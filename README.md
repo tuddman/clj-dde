@@ -5,7 +5,7 @@ A Clojure library (really a wrapper around the Java DDE library provided by pret
 ## Rationale
 
 1. Sometimes you need to connect to a DDE source, and
-2. would rather do it in Clojure > Java
+2. would rather do it in Clojure > some other language
 
 ## Usage
 
@@ -18,9 +18,9 @@ When you need to connect with a DDE data source...
 
 ## Issues
 
-If you get the message "java.lang.UnsatisfiedLinkError: no JavaDDEx64 in java.library.path"  you need to add the javaDDE64.dll file (in /resources) to your classpath:
+If you get the message "java.lang.UnsatisfiedLinkError: no JavaDDEx64 (or JavaDDE) in java.library.path"  you need to add the javaDDE64.dll (or javaDDE.dll) file (it's in /resources) to your classpath directory:
 
-(System/getProperty "java.library.path") to find out
+`(System/getProperty "java.library.path")` to find out
 
 ## License
 
