@@ -2,11 +2,21 @@
 
 A Clojure library (really a wrapper around the Java DDE library provided by pretty_tools) to interoperate with DDE (dynamic data exchange) sources.
 
+## Rationale
+
+1. Sometimes you need to connect to a DDE source, and
+2. would rather do it in Clojure > Java
+
 ## Usage
 
 When you need to connect with a DDE data source...
 
 
+## Setup
+
+`lein javac` to compile the java files.
+
+## Issues
 
 If you get the message "java.lang.UnsatisfiedLinkError: no JavaDDEx64 in java.library.path"  you need to add the javaDDE64.dll file (in /resources) to your classpath:
 
