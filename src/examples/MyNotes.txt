@@ -18,26 +18,6 @@ If you open the terminal.exe file in the MT4 root directory with the HEX editor 
 
 
 
+https://github.com/cemerick/clojure-type-selection-flowchart
 
-
-
-;; sample program:
-
-        DDEClient client;
-        Conversation conv = null;
-        byte[] data=null;
-        client = DDEClient.getInstance();
-        try {
-            conv = client.connect("MT4", "BID");
-            System.out.println("Connected to MT4");
-            String Topic= conv.getTopic();
-            data=conv.request("EURUSD", 5000);
-            String sEURUSD = new String(data);
-            System.out.println("EURUSD value: " + sEURUSD);
-        } catch(DDEException e) {
-            System.out.println(e);
-        } finally {
-            // disconnect in a finally clause
-            try {conv.close();} catch (Exception e) {}
-        }
-        client.close();
+

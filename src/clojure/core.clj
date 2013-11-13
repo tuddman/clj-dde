@@ -1,6 +1,10 @@
 (ns clj-dde.core
   [:import
-        [com.pretty_tools.dde.client DDEClientConversation]
+        [com.pretty_tools.dde.client.DDEClientConversation]
+        [com.pretty_tools.dde.client.DDEClientEventListener]
+        [com.pretty_tools.dde ClipboardFormat]
+        [com.pretty_tools.dde DDEException]
+        [com.pretty_tools.dde DDEMLException]
         [java.util Date]])
 
 (System/getProperty "java.library.path")
@@ -10,56 +14,51 @@
 
 ;; instantiate a DDEClientConversation
 
-(def conversation (DDEClientConversation.))
-
-
 ;; ** DDEClientConversation member functions:
 
-(.connect conversation "excel" "sheet1")
+; (.connect conversation "excel" "sheet1")
+; (.request conversation "R1C1")
+; (.poke conversation "R1C1", "new val")
 
-(.disconnect conversation)
+(def mt4-conv (DDEClientConversation.))
 
-(.execute conversation "some-string")
+(.connect mt4-conv "MT4" "BID")
 
-(.execute conversation some-byte)
+(.startAdvice mt4-conv "EURUSD")
 
-(.poke conversation "some-item" "some-data")
+; (.setEventListener mt4-link (DDEClientEventListener))
 
-(.poke conversation "some-item" byte-data some-clipboardformat)
+;    void onItemChanged(String topic, String item, String data);
 
-(.request conversation "some-item")
-
-(.startAdvice conversation "some-item")
-
-(.stopAdvice conversation "some-item")
-
-(.getService conversation)
-
-(.getTopic conversation)
-
-(.getTimeout conversation)
-
-(.setTimeout conversation)
-
-(.getEventListener conversation)
-
-(.setEventListener conversation an-event-listener)
-
-(.checkConversation conversation)
-
-(.fireEventOnDisconnect conversation)
-
-(.fireEventOnAdvData conversation)
-
-
-; #(com.pretty_tools.dde.client.DDEClientConversation. %)
-
-; (.. conversation connect setTimeout 2000)
-; (.. conversation connect "Excel" "Sheet1")
-
-
-#_(defn get-a-conversation
+(defn ELOnItemChanged
   []
-  (DDEClientConversation. com.pretty_tools.dde.client.DDEClientConversation))
+(reify DDEClientEventListener
+  (onItemChanged [this topic item data]
+               (str "onItemChanged: " topic  " , " item  " , " data " )"))))
+
+(defn ELOnDisconnect
+  []
+(reify DDEClientEventListener
+  (onDisconnect [this]
+               (str "onDisconnect called."))))
+
+(.setEventListener mt4-conv (ELOnItemChanged))
+
+(ELOnItemChanged)
 
 
+(str "the" "string" "gets")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
