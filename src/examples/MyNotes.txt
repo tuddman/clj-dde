@@ -1,0 +1,43 @@
+** MyNotes.txt **
+
+
+To connect to two MT4 instances:
+
+this one is free and you don't have to install, just run it.
+
+get it from:  http://www.chmaas.handshake.de/delphi/freeware/xvi32/xvi32.htm
+
+If you open the terminal.exe file in the MT4 root directory with the HEX editor and do a search for MT4 you will find 7 instances. Simply change MT4 to MT1 and the DDE server name will change to MT1. In Excel you just use ='MT1'|BID!EURUSD for example. I can not take credit for this as it was passed to me thru another conversation, but I think it is ok to share.
+
+
+
+
+;; Make Excel a DDE Server
+
+=Excel|[stock.xls]Sheet1!'r2c2'
+
+
+
+
+
+
+;; sample program:
+
+        DDEClient client;
+        Conversation conv = null;
+        byte[] data=null;
+        client = DDEClient.getInstance();
+        try {
+            conv = client.connect("MT4", "BID");
+            System.out.println("Connected to MT4");
+            String Topic= conv.getTopic();
+            data=conv.request("EURUSD", 5000);
+            String sEURUSD = new String(data);
+            System.out.println("EURUSD value: " + sEURUSD);
+        } catch(DDEException e) {
+            System.out.println(e);
+        } finally {
+            // disconnect in a finally clause
+            try {conv.close();} catch (Exception e) {}
+        }
+        client.close();

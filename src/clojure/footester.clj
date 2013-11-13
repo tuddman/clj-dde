@@ -37,9 +37,3 @@
   (println (com.Baz.Foo/value)))
 
 (foo)
-
-
-
-;; Make Excel a DDE Server
-
-;     =Excel|[stock.xls]Sheet1!'r2c2'
