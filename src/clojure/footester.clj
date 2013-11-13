@@ -25,9 +25,6 @@
 
 (.connect conversation "excel" "sheet1")
 
-; (defn new-instance [obj] (let [clazz (class obj)] (eval `(new ~clazz))))
-
-; #_(def myFoo (new-instance com.Baz.Foo))
 
 (defn fooas-fn
   []
@@ -40,3 +37,9 @@
   (println (com.Baz.Foo/value)))
 
 (foo)
+
+
+
+;; Make Excel a DDE Server
+
+;     =Excel|[stock.xls]Sheet1!'r2c2'
