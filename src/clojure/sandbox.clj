@@ -20,17 +20,17 @@
 
 (.getTimeout conversation)
 
-(.setTimeout conversation)
+(.setTimeout conversation 2000)
 
 (.getEventListener conversation)
 
 (.setEventListener conversation an-event-listener)
 
-(.checkConversation conversation)
+; (.checkConversation conversation)
 
-(.fireEventOnDisconnect conversation)
+; (.fireEventOnDisconnect conversation)
 
-(.fireEventOnAdvData conversation)
+; (.fireEventOnAdvData conversation)
 
 
 ; #(com.pretty_tools.dde.client.DDEClientConversation. %)
@@ -41,4 +41,15 @@
 
 #_(defn get-a-conversation
   []
-  (DDEClientConversation. com.pretty_tools.dde.client.DDEClientConversation))
+  (DDEClientConversation. com.pretty_tools.dde.client.DDEClientConversation))
+
+;; EXCEL setup --
+; (def excel-conv (DDEClientConversation.))
+; (.connect excel-conv "excel" "sheet1")
+; (.request excel-conv "R1C1")
+; (.startAdvice excel-conv "R1C1")
+; (.poke conversation "R1C1", "new val")
+
+
+
+
