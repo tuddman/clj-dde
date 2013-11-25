@@ -31,4 +31,4 @@ Copyright © 2013 tuddman
 Distributed under the Eclipse Public License; the same as Clojure.
 
 
-The various included Java files (pretty_tools library) are licensed under their respective licences.
+The various included Java files (pretty_tools library) are licensed under their respective licenses.
