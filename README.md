@@ -7,16 +7,34 @@ A Clojure library (really a wrapper around the Java DDE library provided by pret
 1. Sometimes you need to connect to a DDE source, and
 2. would rather do it in Clojure > some other language
 
+
+##Releases and dependency information
+
+
+[Leiningen](http://github.com/technomancy/leiningen/) dependency information:
+
+```
+[clj-dde "0.1.0-SNAPSHOT"]
+```
+
+[Maven](http://maven.apache.org) dependency information:
+
+```
+<dependency>
+  <groupId>clj-dde</groupId>
+  <artifactId>clj-dde</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+</dependency>
+```
+
 ## Usage
 
 Work in Progress.
 
 When you need to connect with a DDE data source...
 
+examples for connecting to 1) Excel; and 2) MetaTrader4 are included.
 
-## Setup
-
-`lein javac` to compile the java files.
 
 ## Issues
 
@@ -32,3 +50,4 @@ Distributed under the Eclipse Public License; the same as Clojure.
 
 
 The various included Java files (pretty_tools library) are licensed under their respective licences.
+
