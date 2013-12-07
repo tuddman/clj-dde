@@ -32,11 +32,13 @@
 
 ;; implement the interface
 
+(defn ev-listener
+  []
 (reify DDEClientEventListener
   (onItemChanged [this topic item data]
                (str "onItemChanged: " topic  " , " item  " , " data " )"))
   (onDisconnect [this]
-                (str "onDisconnect() called.")))
+                (str "onDisconnect() called."))))
 
 
 

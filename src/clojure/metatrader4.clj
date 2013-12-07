@@ -124,30 +124,18 @@ gubid
       (println @eubid-now "@" (Date.))))))
 
 
-(reify DDEClientEventListener
-  (onItemChanged [this topic item data]
-               (str "onItemChanged: " topic  " , " item  " , " data " )")))
+;; implement the DDEClientEventListener interface
 
-
- (.setEventListener mt4-conv-bid (DDEClientEventListener.))
-
-
-
- ;    void onItemChanged(String topic, String item, String data);
-
-
-#_(defn ELOnItemChanged
+(defn ev-listener
   []
 (reify DDEClientEventListener
   (onItemChanged [this topic item data]
-               (str "onItemChanged: " topic  " , " item  " , " data " )"))))
-
-#_(defn ELOnDisconnect
-  []
-(reify DDEClientEventListener
+               (str "onItemChanged: " topic  " , " item  " , " data " )"))
   (onDisconnect [this]
-               (str "onDisconnect called."))))
+                (str "onDisconnect() called."))))
 
-; (.setEventListener mt4-conv (ELOnItemChanged))
 
-; (ELOnItemChanged)
+ #_(.setEventListener mt4-conv-bid (DDEClientEventListener.))
+
+
+
