@@ -1,12 +1,10 @@
 (ns clj-dde.core
-;  (:gen-class)
   [:import
         [com.pretty_tools.dde.client DDEClientConversation]
         [com.pretty_tools.dde.client DDEClientEventListener]
         [com.pretty_tools.dde ClipboardFormat]
         [com.pretty_tools.dde DDEException]
-        [com.pretty_tools.dde DDEMLException]
-        [java.util Date]])
+        [com.pretty_tools.dde DDEMLException]])
 
 (System/getProperty "java.library.path")
 
@@ -26,16 +24,28 @@
   [conv app topic]
   (.connect conv app topic))
 
+(defn disconnect
+  [conv]
+  (.disconnect conv))
+
 (defn startAdvice
   [conv]
   (.startAdvice conv))
 
+(defn stopAdvice
+  [conv]
+  (.stopAdvice conv))
+
 (defn poke
-  [conv input]
-  (.poke conv input))
+  [conv topic input]
+  (.poke conv topic input))
+
+(defn request
+  [conv item]
+  (.request conv item))
 
 
-;; implement the interface
+;; implement the DDEClientEventListener interface
 
 (defn ev-listener
   []
@@ -44,17 +54,4 @@
                (str "onItemChanged: " topic  " , " item  " , " data " )"))
   (onDisconnect [this]
                 (str "onDisconnect() called."))))
-
-
-
-
-#_(defn -main
-  [& args]
-  (str "main got called."))
-
-
-
-
-
-
 

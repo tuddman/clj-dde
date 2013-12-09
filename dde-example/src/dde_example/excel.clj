@@ -1,16 +1,25 @@
 (ns dde-example.excel
-  (:require [clj-dde.core :refer :all]))
+  (:require
+   [clj-dde.core :as dde]))
 
 
 
-  (def excel-conv (conversation))
+  (def excel-conv (dde/conversation))
   (type excel-conv) ; check that a 'DDEClientConversation' instance has been created.
 
-  (setTimeout excel-conv 2000)
+  (dde/setTimeout excel-conv 2000)
 
-  (connect excel-conv "excel" "sheet1")
+  (dde/connect excel-conv "excel" "sheet1")
 
-  (request excel-conv "R1C1")
+  (dde/request excel-conv "R1C1")
 
-  (poke excel conv "R1C1" "new val")
+ #_(dde/poke excel-conv "R1C1" "new val")
+
+
+
+
+
+
+
+
 
