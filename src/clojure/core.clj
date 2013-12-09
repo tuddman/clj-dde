@@ -29,6 +29,10 @@
   [conv]
   (.startAdvice conv))
 
+(defn poke
+  [conv input]
+  (.poke conv input))
+
 
 ;; implement the interface
 
@@ -46,6 +50,8 @@
 #_(defn -main
   [& args]
   (str "main got called."))
+
+
 
 
 
