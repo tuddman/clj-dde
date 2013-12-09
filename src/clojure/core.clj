@@ -15,6 +15,7 @@
 
 
 (defn conversation
+  []
   (DDEClientConversation.))
 
 (defn setTimeout
