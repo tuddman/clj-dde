@@ -3,7 +3,6 @@
    [clj-dde.core :as dde]))
 
 
-
   (def excel-conv (dde/conversation))
   (type excel-conv) ; check that a 'DDEClientConversation' instance has been created.
 
@@ -13,7 +12,9 @@
 
   (dde/request excel-conv "R1C1")
 
- #_(dde/poke excel-conv "R1C1" "new val")
+  (dde/poke excel-conv "R1C1" "new val")
+
+
 
 
 

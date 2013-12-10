@@ -36,6 +36,10 @@ When you need to connect with a DDE data source...
 examples for connecting to 1) Excel; and 2) MetaTrader4 are included.
 
 
+## Background
+[About DDE](http://msdn.microsoft.com/en-us/library/ms648774.aspx)
+
+
 ## Issues
 
 If you get the message "java.lang.UnsatisfiedLinkError: no JavaDDEx64 (or JavaDDE) in java.library.path"  you need to add the javaDDEx64.dll (or javaDDE.dll) file (it's in /resources) to your classpath directory:
@@ -50,4 +54,6 @@ Distributed under the Eclipse Public License; the same as Clojure.
 
 
 The various included Java files (pretty_tools library) are licensed under their respective licences.
+
+
 

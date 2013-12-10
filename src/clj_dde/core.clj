@@ -6,19 +6,60 @@
         [com.pretty_tools.dde DDEException]
         [com.pretty_tools.dde DDEMLException]])
 
-(System/getProperty "java.library.path")
+#_(System/getProperty "java.library.path")
+
+
+
+;; implement the DDEClientEventListener interface
+
+(defn setEventListener
+  [conv]
+(.setEventListener conv
+  (reify DDEClientEventListener
+  (onItemChanged [this topic item data]
+               (prn (str "Item Changed: " topic  " , " item  " , " data )))
+  (onDisconnect [this]
+                (prn (str "onDisconnect() called."))))))
+
+
+(defn listen
+  [conv]
+(.setEventListener conv
+  (reify DDEClientEventListener
+  (onItemChanged [this _ _ data]
+               (data))
+  (onDisconnect [this]
+                (prn (str "onDisconnect() called."))))))
+
+
+(defn listen-and-print-data
+  [conv]
+(.setEventListener conv
+  (reify DDEClientEventListener
+  (onItemChanged [this _ _ data]
+               (prn (str data)))
+  (onDisconnect [this]
+                (prn (str "onDisconnect() called."))))))
 
 
 ;; instantiate a DDEClientConversation
-
 
 (defn conversation
   []
   (DDEClientConversation.))
 
+
+;; Method Definitions for a DDEClientConversation.  These are the 'direct' translations of java->clojure.
+;; TODO: define more 'idiomatic, syntactic sugar' usage methods.
+
 (defn setTimeout
   [conv ms]
   (.setTimeout conv ms))
+
+(defn getTimeout
+  "returns timeout length in ms"
+  [conv]
+  (.getTimeout conv))
 
 (defn connect
   [conv app topic]
@@ -29,12 +70,12 @@
   (.disconnect conv))
 
 (defn startAdvice
-  [conv]
-  (.startAdvice conv))
+  [conv item]
+  (.startAdvice conv item))
 
 (defn stopAdvice
-  [conv]
-  (.stopAdvice conv))
+  [conv item]
+  (.stopAdvice conv item))
 
 (defn poke
   [conv topic input]
@@ -44,14 +85,16 @@
   [conv item]
   (.request conv item))
 
+(defn execute
+  [conv command]
+  (.execute conv command))
 
-;; implement the DDEClientEventListener interface
+(defn getService
+  [conv]
+  (.getService conv))
 
-(defn ev-listener
-  []
-(reify DDEClientEventListener
-  (onItemChanged [this topic item data]
-               (str "onItemChanged: " topic  " , " item  " , " data " )"))
-  (onDisconnect [this]
-                (str "onDisconnect() called."))))
+(defn getTopic
+  [conv]
+  (.getTopic conv))
+
 
