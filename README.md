@@ -16,7 +16,19 @@ When you need to connect with a DDE data source...
 
 ## Setup
 
-`lein javac` to compile the java files.
+## Using it
+
+Make sure you have [Leiningen](http://leiningen.org/) installed.
+
+Your `project.clj` should include something like the following:
+
+```clj
+(defproject foo "0.1.0"
+  ...
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [clj-dde "0.1.1"]]
+  ...)
+```
 
 ## Issues
 
