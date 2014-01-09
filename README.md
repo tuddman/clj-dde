@@ -7,16 +7,8 @@ A Clojure library (really a wrapper around the Java DDE library provided by pret
 1. Sometimes you need to connect to a DDE source, and
 2. would rather do it in Clojure > some other language
 
-## Usage
-
-Work in Progress.
-
-When you need to connect with a DDE data source...
-
 
 ## Setup
-
-## Using it
 
 Make sure you have [Leiningen](http://leiningen.org/) installed.
 
@@ -29,6 +21,19 @@ Your `project.clj` should include something like the following:
                  [clj-dde "0.1.1"]]
   ...)
 ```
+
+## Usage
+
+Work in Progress.
+
+When you need to connect with a DDE data source...
+
+
+`(dde/convesation)` to setup a connection.
+`(dde/connect "excel" "sheet1")` to connect to a datasource (excel)
+`(dde/request excel-conv "R1C1")` to 'poll' the data contained in cell R1C1
+
+check out the dde-example folder for further examples and usage.
 
 ## Issues
 
