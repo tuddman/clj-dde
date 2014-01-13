@@ -18,11 +18,20 @@
 
   (dde/request mt4 "EURUSD")
 
-  (dde/ev-listener)
+  (dde/listen-and-print-data mt4)
+
+  (dde/getService mt4)
+
+  (dde/getTopic mt4)
+
+  (stopAdvice mt4 "EURUSD")
+
+  (disconnect mt4)
 
 
 
 
 
 
-
+
+

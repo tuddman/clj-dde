@@ -12,10 +12,11 @@
 
   (dde/request excel-conv "R1C1")
 
-  (dde/poke excel-conv "R1C1" "changed Val")
+  (dde/poke excel-conv "R1C1" "I've been poked!")
 
   (dde/startAdvice excel-conv "R1C1")
 
+  (dde/listen-and-print-data excel-conv)
 
 
 
@@ -27,4 +28,6 @@
 
 
 
-
+
+
+
