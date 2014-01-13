@@ -11,4 +11,5 @@ pom.xml.asc
 /src/clojure/sandbox.clj
 /src/examples
 /src/java-src-zip
+/src/cpp
 /src/java/com/Baz/Foo.java
