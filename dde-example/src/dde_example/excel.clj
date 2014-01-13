@@ -12,7 +12,11 @@
 
   (dde/request excel-conv "R1C1")
 
-  (dde/poke excel-conv "R1C1" "new val")
+  (dde/poke excel-conv "R1C1" "changed Val")
+
+  (dde/startAdvice excel-conv "R1C1")
+
+
 
 
 
