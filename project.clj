@@ -1,4 +1,4 @@
-(defproject clj-dde "0.1.1"
+(defproject clj-dde "0.1.2"
   :description "clj-dde: for when you need to connect to a DDE (dynamic data exchange) source"
   :url "http://github.com/tuddman/clj-dde"
   :license {:name "Eclipse Public License"
