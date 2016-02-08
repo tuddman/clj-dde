@@ -1,10 +1,9 @@
 (ns clj-dde.core
-  [:import
-        [com.pretty_tools.dde.client DDEClientConversation]
-        [com.pretty_tools.dde.client DDEClientEventListener]
-        [com.pretty_tools.dde ClipboardFormat]
-        [com.pretty_tools.dde DDEException]
-        [com.pretty_tools.dde DDEMLException]])
+  (:import [com.pretty_tools.dde.client DDEClientConversation
+                                        DDEClientEventListener]
+           [com.pretty_tools.dde ClipboardFormat
+                                 DDEException
+                                 DDEMLException]))
 
 #_(System/getProperty "java.library.path")
 
