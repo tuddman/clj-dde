@@ -96,5 +96,3 @@
 (defn getTopic
   [conv]
   (.getTopic conv))
-
-
