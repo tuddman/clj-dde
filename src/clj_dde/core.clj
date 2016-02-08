@@ -5,13 +5,9 @@
                                  DDEException
                                  DDEMLException]))
 
-#_(System/getProperty "java.library.path")
-
-
-
 ;; implement the DDEClientEventListener interface
 
-(defn setEventListener
+(defn set-event-listener
   [conv]
 (.setEventListener conv
   (reify DDEClientEventListener
@@ -51,11 +47,11 @@
 ;; Method Definitions for a DDEClientConversation.  These are the 'direct' translations of java->clojure.
 ;; TODO: define more 'idiomatic, syntactic sugar' usage methods.
 
-(defn setTimeout
+(defn set-timeout
   [conv ms]
   (.setTimeout conv ms))
 
-(defn getTimeout
+(defn get-timeout
   "returns timeout length in ms"
   [conv]
   (.getTimeout conv))
@@ -68,11 +64,11 @@
   [conv]
   (.disconnect conv))
 
-(defn startAdvice
+(defn start-advice
   [conv item]
   (.startAdvice conv item))
 
-(defn stopAdvice
+(defn stop-advice
   [conv item]
   (.stopAdvice conv item))
 
@@ -88,10 +84,10 @@
   [conv command]
   (.execute conv command))
 
-(defn getService
+(defn get-service
   [conv]
   (.getService conv))
 
-(defn getTopic
+(defn get-topic
   [conv]
   (.getTopic conv))
