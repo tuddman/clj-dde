@@ -8,34 +8,25 @@
 ;; implement the DDEClientEventListener interface
 
 (defn set-event-listener
-  [conv]
+  [conv & {:keys [on-disconnect on-item-changed]
+           :or {on-disconnect (fn [_])
+                on-item-changed (fn [_ _ _ _])}}]
   (doto conv
     (.setEventListener
       (reify DDEClientEventListener
-        (onItemChanged [this topic item data]
-          (prn (str "Item Changed: " topic  " , " item  " , " data )))
-        (onDisconnect [this]
-          (prn (str "onDisconnect() called.")))))))
+        (onItemChanged [this topic item data] (on-item-changed this topic item data))
+        (onDisconnect  [this] (on-disconnect this))))))
 
 (defn listen
   [conv]
-  (doto conv
-    (.setEventListener
-      (reify DDEClientEventListener
-        (onItemChanged [this _ _ data]
-          (data))
-        (onDisconnect [this]
-          (prn (str "onDisconnect() called.")))))))
+  (set-event-listener conv
+                      :on-disconnect (fn [_] (prn (str "onDisconnect() called.")))))
 
 (defn listen-and-print-data
   [conv]
-  (doto conv
-    (.setEventListener
-      (reify DDEClientEventListener
-        (onItemChanged [this _ _ data]
-          (prn (str data)))
-        (onDisconnect [this]
-          (prn (str "onDisconnect() called.")))))))
+  (set-event-listener conv
+                      :on-item-changed (fn [_ _ _ data] (prn (str data)))
+                      :on-disconnect   (fn [_] (prn (str "onDisconnect() called.")))))
 
 ;; instantiate a DDEClientConversation
 
