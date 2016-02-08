@@ -9,33 +9,33 @@
 
 (defn set-event-listener
   [conv]
-  (.setEventListener conv
-                     (reify DDEClientEventListener
-                       (onItemChanged [this topic item data]
-                         (prn (str "Item Changed: " topic  " , " item  " , " data )))
-                       (onDisconnect [this]
-                         (prn (str "onDisconnect() called."))))))
-
+  (doto conv
+    (.setEventListener
+      (reify DDEClientEventListener
+        (onItemChanged [this topic item data]
+          (prn (str "Item Changed: " topic  " , " item  " , " data )))
+        (onDisconnect [this]
+          (prn (str "onDisconnect() called.")))))))
 
 (defn listen
   [conv]
-  (.setEventListener conv
-                     (reify DDEClientEventListener
-                       (onItemChanged [this _ _ data]
-                         (data))
-                       (onDisconnect [this]
-                         (prn (str "onDisconnect() called."))))))
-
+  (doto conv
+    (.setEventListener
+      (reify DDEClientEventListener
+        (onItemChanged [this _ _ data]
+          (data))
+        (onDisconnect [this]
+          (prn (str "onDisconnect() called.")))))))
 
 (defn listen-and-print-data
   [conv]
-  (.setEventListener conv
-                     (reify DDEClientEventListener
-                       (onItemChanged [this _ _ data]
-                         (prn (str data)))
-                       (onDisconnect [this]
-                         (prn (str "onDisconnect() called."))))))
-
+  (doto conv
+    (.setEventListener
+      (reify DDEClientEventListener
+        (onItemChanged [this _ _ data]
+          (prn (str data)))
+        (onDisconnect [this]
+          (prn (str "onDisconnect() called.")))))))
 
 ;; instantiate a DDEClientConversation
 
@@ -49,7 +49,7 @@
 
 (defn set-timeout
   [conv ms]
-  (.setTimeout conv ms))
+  (doto conv (.setTimeout ms)))
 
 (defn get-timeout
   "returns timeout length in ms"
@@ -58,23 +58,23 @@
 
 (defn connect
   [conv app topic]
-  (.connect conv app topic))
+  (doto conv (.connect app topic)))
 
 (defn disconnect
   [conv]
-  (.disconnect conv))
+  (doto conv .disconnect))
 
 (defn start-advice
   [conv item]
-  (.startAdvice conv item))
+  (doto conv (.startAdvice item)))
 
 (defn stop-advice
   [conv item]
-  (.stopAdvice conv item))
+  (doto conv (.stopAdvice item)))
 
 (defn poke
   [conv topic input]
-  (.poke conv topic input))
+  (doto conv (.poke topic input)))
 
 (defn request
   [conv item]
@@ -82,7 +82,7 @@
 
 (defn execute
   [conv command]
-  (.execute conv command))
+  (doto conv (.execute command)))
 
 (defn get-service
   [conv]
