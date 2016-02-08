@@ -9,32 +9,32 @@
 
 (defn set-event-listener
   [conv]
-(.setEventListener conv
-  (reify DDEClientEventListener
-  (onItemChanged [this topic item data]
-               (prn (str "Item Changed: " topic  " , " item  " , " data )))
-  (onDisconnect [this]
-                (prn (str "onDisconnect() called."))))))
+  (.setEventListener conv
+                     (reify DDEClientEventListener
+                       (onItemChanged [this topic item data]
+                         (prn (str "Item Changed: " topic  " , " item  " , " data )))
+                       (onDisconnect [this]
+                         (prn (str "onDisconnect() called."))))))
 
 
 (defn listen
   [conv]
-(.setEventListener conv
-  (reify DDEClientEventListener
-  (onItemChanged [this _ _ data]
-               (data))
-  (onDisconnect [this]
-                (prn (str "onDisconnect() called."))))))
+  (.setEventListener conv
+                     (reify DDEClientEventListener
+                       (onItemChanged [this _ _ data]
+                         (data))
+                       (onDisconnect [this]
+                         (prn (str "onDisconnect() called."))))))
 
 
 (defn listen-and-print-data
   [conv]
-(.setEventListener conv
-  (reify DDEClientEventListener
-  (onItemChanged [this _ _ data]
-               (prn (str data)))
-  (onDisconnect [this]
-                (prn (str "onDisconnect() called."))))))
+  (.setEventListener conv
+                     (reify DDEClientEventListener
+                       (onItemChanged [this _ _ data]
+                         (prn (str data)))
+                       (onDisconnect [this]
+                         (prn (str "onDisconnect() called."))))))
 
 
 ;; instantiate a DDEClientConversation
