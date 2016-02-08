@@ -18,7 +18,7 @@ Your `project.clj` should include something like the following:
 (defproject foo "0.1.0"
   ...
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [clj-dde "0.1.2"]]
+                 [clj-dde "0.2.0"]]
   ...)
 ```
 
@@ -29,9 +29,21 @@ Work in Progress.
 When you need to connect with a DDE data source...
 
 
-`(dde/convesation)` to setup a connection.
-`(dde/connect "excel" "sheet1")` to connect to a datasource (excel)
-`(dde/request excel-conv "R1C1")` to 'poll' the data contained in cell R1C1
+```clojure
+(def excel-conv (dde/convesation))          ;; to setup a connection.
+(dde/connect excel-conv "excel" "sheet1")   ;; to connect to a datasource (excel)
+(dde/request excel-conv "R1C1")             ;; to 'poll' the data contained in cell R1C1
+```
+
+The major difference between version 0.1.x and 0.2.x is that all functions
+that previously returned `nil` now returns the conversation object, thus
+making the functions chain-able:
+
+```clojure
+(-> (dde/conversation)
+    (dde/connect "excel" "sheet1")
+    (dde/request "R1C1"))
+```
 
 check out the dde-example folder for further examples and usage.
 
